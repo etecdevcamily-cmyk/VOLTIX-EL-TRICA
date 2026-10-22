@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="Serviços de eletricista residencial e comercial. Instalações, manutenção e atendimento especializado.">
+  <title>Voltix Elétrica | Serviços Elétricos</title>
+
+  <style>
+    :root {
+      --background: #0b1220;
+      --surface: #121d2e;
+      --surface-light: #19263a;
+      --yellow: #facc15;
+      --blue: #3b82f6;
+      --text: #f3f6fb;
+      --muted: #a5b1c2;
+      --border: rgba(255, 255, 255, 0.1);
+      --radius: 16px;
+      --max-width: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+    }
+
+    body {
+      background: var(--background);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(var(--max-width), 92%);
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: fixed;
+      z-index: 10;
+      inset: 0 0 auto;
+      border-bottom: 1px solid var(--border);
+      background: rgba(11, 18, 32, 0.92);
+      backdrop-filter: blur(12px);
+    }
+
+    .navbar {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .logo-icon {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border-radius: 11px;
+      background: var(--yellow);
+      color: var(--background);
+      font-size: 1.35rem;
+    }
+
+    .logo span:last-child {
+      color: var(--yellow);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      list-style: none;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--yellow);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 12px 22px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: var(--yellow);
+      color: #111827;
+      font-weight: 800;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: #fde047;
+    }
+
+    .button-outline {
+      border-color: var(--border);
+      background: transparent;
+      color: var(--text);
+    }
+
+    .button-outline:hover {
+      border-color: var(--yellow);
+      background: rgba(250, 204, 21, 0.08);
+      color: var(--yellow);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      font-size: 1.7rem;
+      cursor: pointer;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 150px 0 76px;
+    }
+
+    .hero::before,
+    .hero::after {
+      position: absolute;
+      z-index: -1;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      content: "";
+      filter: blur(90px);
+      opacity: 0.18;
+    }
+
+    .hero::before {
+      top: 70px;
+      right: -80px;
+      background: var(--yellow);
+    }
+
+    .hero::after {
+      bottom: 20px;
+      left: -140px;
+      background: var(--blue);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border: 1px solid rgba(250, 204, 21, 0.35);
+      border-radius: 999px;
+      background: rgba(250, 204, 21, 0.08);
+      color: var(--yellow);
+      font-size: 0.9rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.15;
+    }
+
+    .hero h1 {
+      max-width: 850px;
+      margin-top: 24px;
+      font-size: clamp(2.7rem, 7vw, 5.4rem);
+      letter-spacing: -0.045em;
+      text-transform: uppercase;
+    }
+
+    .highlight {
+      color: var(--yellow);
+    }
+
+    .hero-copy {
+      max-width: 680px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 1.12rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-number {
+      color: var(--yellow);
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .section {
+      padding: 82px 0;
+    }
+
+    .section-muted {
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .section-heading {
+      max-width: 680px;
+      margin: 0 auto 42px;
+      text-align: center;
+    }
+
+    .section-tag {
+      color: var(--yellow);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin-top: 10px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-transform: uppercase;
+    }
+
+    .section-heading p {
+      margin-top: 12px;
+      color: var(--muted);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(250, 204, 21, 0.55);
+    }
+
+    .card-icon {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      margin-bottom: 17px;
+      border-radius: 13px;
+      background: rgba(250, 204, 21, 0.12);
+      font-size: 1.45rem;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .card-link {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--yellow);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .about-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .about-copy h2 {
+      margin-top: 10px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-transform: uppercase;
+    }
+
+    .about-copy p {
+      margin-top: 16px;
+      color: var(--muted);
+    }
+
+    .about-panel {
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at top right, rgba(59, 130, 246, 0.2), transparent 45%),
+        var(--surface);
+    }
+
+    .check-list {
+      display: grid;
+      gap: 15px;
+      margin-top: 22px;
+      list-style: none;
+      color: var(--muted);
+    }
+
+    .check-list li::before {
+      margin-right: 9px;
+      color: var(--yellow);
+      content: "✓";
+      font-weight: 900;
+    }
+
+    .service-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .service-card .card-icon {
+      flex: 0 0 46px;
+      width: 46px;
+      height: 46px;
+      margin: 0;
+      background: rgba(59, 130, 246, 0.18);
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 14px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .contact-icon {
+      font-size: 1.35rem;
+    }
+
+    .contact-item p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .map-card {
+      display: grid;
+      min-height: 290px;
+      place-items: center;
+      padding: 28px;
+      border: 1px solid rgba(250, 204, 21, 0.25);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(250, 204, 21, 0.14)),
+        var(--surface);
+      text-align: center;
+    }
+
+    .map-card .map-pin {
+      font-size: 2.4rem;
+    }
+
+    .map-card p {
+      margin-top: 8px;
+      color: var(--muted);
+    }
+
+    .footer {
+      padding: 45px 0 20px;
+      border-top: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 32px;
+    }
+
+    .footer p,
+    .footer li {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer p {
+      max-width: 380px;
+      margin-top: 12px;
+    }
+
+    .footer h3 {
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .footer ul {
+      display: grid;
+      gap: 7px;
+      list-style: none;
+    }
+
+    .copyright {
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.82rem !important;
+    }
+
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        right: 0;
+        left: 0;
+        padding: 18px 4%;
+        border-bottom: 1px solid var(--border);
+        background: var(--background);
+      }
+
+      .nav-links.open {
+        display: grid;
+        gap: 0;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 12px 0;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .hero {
+        padding-top: 125px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-brand {
+        grid-column: auto;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Navegação principal">
+      <a class="logo" href="#inicio" aria-label="Voltix Elétrica - início">
+        <span class="logo-icon">E</span>
+        SOS <span>Elétrica</span>
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#produtos">Materiais</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+
+      <a class="button nav-cta" href="#contato">Entre em contato</a>
+
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+        ☰
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container">
+        <span class="eyebrow">⚡ Atendimento residencial e comercial</span>
+
+        <h1>
+          Sua energia não pode parar.<br>
+          <span class="highlight">Conte com quem entende.</span>
+        </h1>
+
+        <p class="hero-copy">
+          Instalação, manutenção e materiais elétricos com atendimento cuidadoso,
+          orçamento transparente e foco em segurança.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button" data-whatsapp href="#contato"> Consultar orçamento</a>
+          <a class="button button-outline" href="#servicos">Conhecer serviços</a>
+        </div>
+
+        <div class="stats">
+          <div>
+            <div class="stat-number">6+</div>
+            <div class="stat-label">Anos de experiência</div>
+          </div>
+          <div>
+            <div class="stat-number">200+</div>
+            <div class="stat-label">Clientes atendidos</div>
+          </div>
+          <div>
+            <div class="stat-number">24h</div>
+            <div class="stat-label">Consulte disponibilidade</div>
+          </div>
+          <div>
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Atenção à segurança</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="produtos">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-tag">Materiais elétricos</span>
+          <h2>Tudo para sua instalação</h2>
+          <p>Consulte disponibilidade e opções para sua necessidade.</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="card">
+            <div class="card-icon">〰️</div>
+            <h3>Fios e cabos</h3>
+            <p>Opções para diferentes instalações e necessidades elétricas.</p>
+            <a class="card-link" data-whatsapp href="#contato">Consultar →</a>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">🔌</div>
+            <h3>Tomadas e interruptores</h3>
+            <p>Modelos e acabamentos para ambientes residenciais e comerciais.</p>
+            <a class="card-link" data-whatsapp href="#contato">Consultar →</a>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">🛡️</div>
+            <h3>Disjuntores e proteção</h3>
+            <p>Componentes para proteção e organização da instalação elétrica.</p>
+            <a class="card-link" data-whatsapp href="#contato">Consultar →</a>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">💡</div>
+            <h3>Iluminação LED</h3>
+            <p>Lâmpadas, luminárias e opções de iluminação para cada espaço.</p>
+            <a class="card-link" data-whatsapp href="#contato">Consultar →</a>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">📦</div>
+            <h3>Quadros elétricos</h3>
+            <p>Quadros e acessórios para montagem e organização elétrica.</p>
+            <a class="card-link" data-whatsapp href="#contato">Consultar →</a>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">☀️</div>
+            <h3>Energia solar</h3>
+            <p>Consulte materiais e serviços disponíveis para seu projeto.</p>
+            <a class="card-link" data-whatsapp href="#contato">Consultar →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="sobre">
+      <div class="container about-grid">
+        <div class="about-copy">
+          <span class="section-tag">Sobre a Voltix</span>
+          <h2>Serviço bem-feito começa com segurança</h2>
+          <p>
+            A Voltix Elétrica atende clientes residenciais e comerciais com
+            soluções para instalações, reparos e manutenção.
+          </p>
+          <p>
+            Cada serviço deve ser avaliado de acordo com as condições do local
+            e as necessidades do cliente. Fale conosco para explicar o que você
+            precisa e solicitar um orçamento.
+          </p>
+        </div>
+
+        <div class="about-panel">
+          <h3>Atendimento com responsabilidade</h3>
+          <ul class="check-list">
+            <li>Orçamento claro antes da execução</li>
+            <li>Orientação sobre materiais e serviço</li>
+            <li>Atendimento residencial e comercial</li>
+            <li>Compromisso com práticas seguras</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="servicos">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-tag">O que fazemos</span>
+          <h2>Serviços elétricos</h2>
+          <p>Entre em contato para confirmar escopo, disponibilidade e valores.</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="card service-card">
+            <div class="card-icon">🏠</div>
+            <div>
+              <h3>Instalação residencial</h3>
+              <p>Instalações e melhorias elétricas em casas e apartamentos.</p>
+            </div>
+          </article>
+
+          <article class="card service-card">
+            <div class="card-icon">🏢</div>
+            <div>
+              <h3>Elétrica comercial</h3>
+              <p>Serviços elétricos para lojas, escritórios e espaços comerciais.</p>
+            </div>
+          </article>
+
+          <article class="card service-card">
+            <div class="card-icon">📝</div>
+            <div>
+              <h3>Inspeção e avaliação</h3>
+              <p>Avaliação da instalação e orientação sobre os próximos passos.</p>
+            </div>
+          </article>
+
+          <article class="card service-card">
+            <div class="card-icon">🧰</div>
+            <div>
+              <h3>Manutenção</h3>
+              <p>Verificação e manutenção de componentes e instalações elétricas.</p>
+            </div>
+          </article>
+
+          <article class="card service-card">
+            <div class="card-icon">⚠️</div>
+            <div>
+              <h3>Atendimento emergencial</h3>
+              <p>Consulte disponibilidade para situações que precisam de atenção rápida.</p>
+            </div>
+          </article>
+
+          <article class="card service-card">
+            <div class="card-icon">⚡</div>
+            <div>
+              <h3>Quadros e padrões</h3>
+              <p>Instalação, organização e adequação conforme avaliação do local.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="contato">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-tag">Fale conosco</span>
+          <h2>Vamos conversar sobre seu projeto?</h2>
+          <p>Envie uma mensagem com uma breve descrição do serviço que precisa.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-list">
+            <div class="contact-item">
+              <span class="contact-icon">📍</span>
+              <div>
+                <strong>Região de atendimento</strong>
+                <p>Birigui-SP e Região</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-icon">🕒</span>
+              <div>
+                <strong>Horário de atendimento</strong>
+                <p>De segunda a sabado das 7H as 18H</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-icon">📞</span>
+              <div>
+                <strong>Telefone / WhatsApp</strong>
+                <p>(18) 991234552</p>
+              </div>
+            </div>
+
+            <a class="button" data-whatsapp href="#contato">💬 Chamar no WhatsApp</a>
+          </div>
+
+          <div class="map-card">
+            <div>
+              <div class="map-pin">📍</div>
+              <h3>[Seu endereço ou região]</h3>
+              <p>Edite este espaço com seu endereço, cidade ou área de atendimento.</p>
+              <a class="card-link" href="https://maps.google.com/" target="_blank" rel="noopener noreferrer">
+                Abrir no Google Maps →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="#inicio">
+            <span class="logo-icon">E</span>
+            SOS <span>Elétrica</span>
+          </a>
+          <p>
+            Serviços e materiais elétricos para clientes residenciais e comerciais.
+            Entre em contato para solicitar um orçamento.
+          </p>
+        </div>
+
+        <div>
+          <h3>Navegação</h3>
+          <ul>
+            <li><a href="#produtos">Materiais</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Contato</h3>
+          <ul>
+            <li>(18) 991234552</li>
+            <li>cavalcantecamily4@gmail.com</li>
+            <li>Birigui-SP e Região</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="copyright">
+        © <span id="year"></span> Voltix Elétrica. Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Troque pelo seu número com código do país e DDD, sem +, espaços ou traços.
+    // Exemplo de formato: 55 + DDD + número.
+    const WHATSAPP_NUMBER = "55(18)991234552";
+
+    document.querySelectorAll("[data-whatsapp]").forEach((link) => {
+      const message = encodeURIComponent("Olá! Gostaria de solicitar um orçamento.");
+      link.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    });
+
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
